@@ -36,13 +36,6 @@ def isWordGuessed(secretWord, lettersGuessed):
 
     return True
 
-def getGuessedWord():
-
-     guessed = ''
-
-
-     return guessed
-
 def getAvailableLetters():
     import string
     # 'abcdefghijklmnopqrstuvwxyz'
@@ -59,7 +52,7 @@ def hangman(secretWord):
     print('I am thinking of a word that is', len(secretWord), ' letters long.')
     print('-------------')
 
-    while  isWordGuessed(secretWord, lettersGuessed) == False and guesses >0:
+    while  isWordGuessed(secretWord, lettersGuessed) == False and guesses > 0:
         print('You have ', guesses, 'guesses left.')
 
         available = getAvailableLetters()
@@ -71,7 +64,7 @@ def hangman(secretWord):
         letter = input('Please guess a letter: ')
         if letter in lettersGuessed:
 
-            guessed = getGuessedWord()
+            guessed = ''
             for letter in secretWord:
                 if letter in lettersGuessed:
                     guessed += letter
@@ -82,7 +75,7 @@ def hangman(secretWord):
         elif letter in secretWord:
             lettersGuessed.append(letter)
 
-            guessed = getGuessedWord()
+            guessed = ''
             for letter in secretWord:
                 if letter in lettersGuessed:
                     guessed += letter
@@ -94,7 +87,7 @@ def hangman(secretWord):
             guesses -=1
             lettersGuessed.append(letter)
 
-            guessed = getGuessedWord()
+            guessed = ''
             for letter in secretWord:
                 if letter in lettersGuessed:
                     guessed += letter
