@@ -22,7 +22,13 @@ class word:
         wordlist = str.split(line)
         print("  ", len(wordlist), "words loaded.")
         return random.choice(wordlist)
-    
+
+def reloadIfGreater(guesses, diff):
+    while(guesses < diff):
+        new_inFile = open(WORDLIST_FILENAME, 'r')
+        new_line = new_inFile.readline()
+        new_wordlist = str.split(new_line)
+        hangman(random.choice(new_wordlist))
 
 def isWordGuessed(secretWord, lettersGuessed):
     secretLetters = []
@@ -57,6 +63,7 @@ def letterInWord(secretWord, lettersGuessed):
 
     return guessed
 
+
 def differentLetters(secretWord):
     diffnumber = 0
     for letter in getAvailableLetters():
@@ -69,6 +76,7 @@ def differentLetters(secretWord):
 def hangman(secretWord):
 
     guesses = 8
+    reloadIfGreater(guesses, differentLetters(secretWord))
     lettersGuessed = []
     response = ''
     print('Welcome to the game, Hangam!')
@@ -78,7 +86,7 @@ def hangman(secretWord):
         print('The word has', differentLetters(secretWord), 'different letters')
     else:
         pass
-
+    
     print('-------------')
 
     while  isWordGuessed(secretWord, lettersGuessed) == False and guesses > 0:
@@ -109,6 +117,7 @@ def hangman(secretWord):
             guessed = letterInWord(secretWord, lettersGuessed)
 
             print('Oops! That letter is not in my word: ',  guessed)
+
         print('------------')
 
     else:
