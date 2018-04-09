@@ -3,20 +3,25 @@ import string
 
 WORDLIST_FILENAME = "palavras.txt"
 
-def loadWords():
-    """
-    Depending on the size of the word list, this function may
-    take a while to finish.
-    """
-    print("Loading word list from file...")
-    # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'r')
-    # line: string
-    line = inFile.readline()
-    # wordlist: list of strings
-    wordlist = str.split(line)
-    print("  ", len(wordlist), "words loaded.")
-    return random.choice(wordlist)
+class word:
+    inFile = ''
+    line = ''
+    wordlist = ''
+
+    def loadWords():
+        """
+        Depending on the size of the word list, this function may
+        take a while to finish.
+        """
+        print("Loading word list from file...")
+        # inFile: file
+        inFile = open(WORDLIST_FILENAME, 'r')
+        # line: string
+        line = inFile.readline()
+        # wordlist: list of strings
+        wordlist = str.split(line)
+        print("  ", len(wordlist), "words loaded.")
+        return random.choice(wordlist)
     
 
 def isWordGuessed(secretWord, lettersGuessed):
@@ -52,12 +57,28 @@ def letterInWord(secretWord, lettersGuessed):
 
     return guessed
 
+def differentLetters(secretWord):
+    diffnumber = 0
+    for letter in getAvailableLetters():
+        if letter in secretWord:
+            diffnumber += 1
+
+    return diffnumber
+
+
 def hangman(secretWord):
 
     guesses = 8
     lettersGuessed = []
+    response = ''
     print('Welcome to the game, Hangam!')
     print('I am thinking of a word that is', len(secretWord), ' letters long.')
+    response = input('Would you like to know how many different letters the word has? (y/n) ')
+    if(response == 'y'):
+        print('The word has', differentLetters(secretWord), 'different letters')
+    else:
+        pass
+
     print('-------------')
 
     while  isWordGuessed(secretWord, lettersGuessed) == False and guesses > 0:
@@ -96,8 +117,5 @@ def hangman(secretWord):
         else:
             print('Sorry, you ran out of guesses. The word was ', secretWord, '.')
 
-
-
-
-secretWord = loadWords().lower()
-hangman(secretWord)
+word = word.loadWords().lower()
+hangman(word)
