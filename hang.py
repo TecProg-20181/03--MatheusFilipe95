@@ -30,9 +30,12 @@ def reloadIfGreater(guesses, diff):
         hangman(random.choice(new_wordlist))
 
 def initialPresentation(secretWord):
+    response = ''
     print('Welcome to the game, Hangam!')
     print('I am thinking of a word that is', len(secretWord), ' letters long.')
     response = input('Would you like to know how many different letters the word has? (y/n) ')
+    while (response != 'y') and (response != 'n'):
+        response = input('Would you like to know how many different letters the word has? (y/n) ')
     if(response == 'y'):
         print('The word has', differentLetters(secretWord), 'different letters')
     else:
@@ -81,8 +84,6 @@ def hangman(secretWord):
     guesses = 8
     reloadIfGreater(guesses, differentLetters(secretWord))
     lettersGuessed = []
-    response = ''
-    
     initialPresentation(secretWord)
 
     while  isWordGuessed(secretWord, lettersGuessed) == False and guesses > 0:
