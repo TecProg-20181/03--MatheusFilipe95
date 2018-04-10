@@ -10,7 +10,7 @@ class word:
         self.line = ''
         self.wordlist = ''
 
-    def loadWords():
+    def loadWords(self):
         """
         Depending on the size of the word list, this function may
         take a while to finish.
@@ -132,6 +132,6 @@ def hangman(secretWord):
             print('Sorry, you ran out of guesses. The word was ', secretWord, '.')
     quit()
 
-
-word = word.loadWords().lower()
-hangman(word)
+start_word = word()
+start_word = start_word.loadWords().lower()
+hangman(start_word)
