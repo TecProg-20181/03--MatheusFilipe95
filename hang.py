@@ -5,8 +5,11 @@ WORDLIST_FILENAME = "palavras.txt"
 
 class word:
 
-    pass
-    
+    def __init__(self):
+        self.inFile = ''
+        self.line = ''
+        self.wordlist = ''
+
     def loadWords():
         """
         Depending on the size of the word list, this function may
@@ -22,12 +25,14 @@ class word:
         print("  ", len(wordlist), "words loaded.")
         return random.choice(wordlist)
 
+
 def reloadIfGreater(guesses, diff):
     while(guesses < diff):
         new_inFile = open(WORDLIST_FILENAME, 'r')
         new_line = new_inFile.readline()
         new_wordlist = str.split(new_line)
         hangman(random.choice(new_wordlist))
+
 
 def initialPresentation(secretWord):
     response = ''
@@ -43,6 +48,7 @@ def initialPresentation(secretWord):
 
     print('-------------')
 
+
 def isWordGuessed(secretWord, lettersGuessed):
     secretLetters = []
     for letter in secretWord:
@@ -53,11 +59,13 @@ def isWordGuessed(secretWord, lettersGuessed):
 
     return True
 
+
 def getAvailableLetters():
     # 'abcdefghijklmnopqrstuvwxyz'
     available = string.ascii_lowercase
 
     return available
+
 
 def letterInWord(secretWord, lettersGuessed):
     guessed = ''
