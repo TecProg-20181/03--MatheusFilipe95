@@ -4,7 +4,7 @@ import string
 WORDLIST_FILENAME = "palavras.txt"
 
 class word:
-    
+
     pass
     
     def loadWords():
@@ -28,6 +28,17 @@ def reloadIfGreater(guesses, diff):
         new_line = new_inFile.readline()
         new_wordlist = str.split(new_line)
         hangman(random.choice(new_wordlist))
+
+def initialPresentation(secretWord):
+    print('Welcome to the game, Hangam!')
+    print('I am thinking of a word that is', len(secretWord), ' letters long.')
+    response = input('Would you like to know how many different letters the word has? (y/n) ')
+    if(response == 'y'):
+        print('The word has', differentLetters(secretWord), 'different letters')
+    else:
+        pass
+
+    print('-------------')
 
 def isWordGuessed(secretWord, lettersGuessed):
     secretLetters = []
@@ -71,15 +82,8 @@ def hangman(secretWord):
     reloadIfGreater(guesses, differentLetters(secretWord))
     lettersGuessed = []
     response = ''
-    print('Welcome to the game, Hangam!')
-    print('I am thinking of a word that is', len(secretWord), ' letters long.')
-    response = input('Would you like to know how many different letters the word has? (y/n) ')
-    if(response == 'y'):
-        print('The word has', differentLetters(secretWord), 'different letters')
-    else:
-        pass
     
-    print('-------------')
+    initialPresentation(secretWord)
 
     while  isWordGuessed(secretWord, lettersGuessed) == False and guesses > 0:
         print('You have ', guesses, 'guesses left.')
@@ -117,6 +121,7 @@ def hangman(secretWord):
             print('Congratulations, you won!')
         else:
             print('Sorry, you ran out of guesses. The word was ', secretWord, '.')
+    quit()
 
 
 word = word.loadWords().lower()
