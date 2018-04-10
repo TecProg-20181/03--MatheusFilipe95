@@ -4,10 +4,9 @@ import string
 WORDLIST_FILENAME = "palavras.txt"
 
 class word:
-    inFile = ''
-    line = ''
-    wordlist = ''
-
+    
+    pass
+    
     def loadWords():
         """
         Depending on the size of the word list, this function may
@@ -32,13 +31,6 @@ def reloadIfGreater(guesses, diff):
 
 def isWordGuessed(secretWord, lettersGuessed):
     secretLetters = []
-
-#    for letter in secretWord:
-#        if letter in secretLetters:
-#            secretLetters.append(letter)
-#        else:
-#            pass
-
     for letter in secretWord:
         if letter in lettersGuessed:
             pass
@@ -125,6 +117,7 @@ def hangman(secretWord):
             print('Congratulations, you won!')
         else:
             print('Sorry, you ran out of guesses. The word was ', secretWord, '.')
+
 
 word = word.loadWords().lower()
 hangman(word)
