@@ -1,30 +1,8 @@
 import random
 import string
+from classes.word import Word
 
 WORDLIST_FILENAME = "palavras.txt"
-
-class word:
-
-    def __init__(self):
-        self.inFile = ''
-        self.line = ''
-        self.wordlist = ''
-
-    def loadWords(self):
-        """
-        Depending on the size of the word list, this function may
-        take a while to finish.
-        """
-        print("Loading word list from file...")
-        # inFile: file
-        inFile = open(WORDLIST_FILENAME, 'r')
-        # line: string
-        line = inFile.readline()
-        # wordlist: list of strings
-        wordlist = str.split(line)
-        print("  ", len(wordlist), "words loaded.")
-        return random.choice(wordlist)
-
 
 def reloadIfGreater(guesses, diff):
     while(guesses < diff):
@@ -32,7 +10,6 @@ def reloadIfGreater(guesses, diff):
         new_line = new_inFile.readline()
         new_wordlist = str.split(new_line)
         hangman(random.choice(new_wordlist))
-
 
 def initialPresentation(secretWord):
     response = ''
@@ -132,6 +109,6 @@ def hangman(secretWord):
             print('Sorry, you ran out of guesses. The word was ', secretWord, '.')
     quit()
 
-start_word = word()
+start_word = Word()
 start_word = start_word.loadWords().lower()
 hangman(start_word)
