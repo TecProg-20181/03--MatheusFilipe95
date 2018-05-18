@@ -1,14 +1,13 @@
 import random
 import string
 
-WORDLIST_FILENAME = "palavras.txt"
-
 class Word:
 
     def __init__(self):
         self.inFile = ''
         self.line = ''
         self.wordlist = ''
+        self.WORDLIST_FILENAME = "palavras.txt"
 
     def loadWords(self):
         """
@@ -17,10 +16,16 @@ class Word:
         """
         print("Loading word list from file...")
         # inFile: file
-        inFile = open(WORDLIST_FILENAME, 'r')
+        inFile = open(self.WORDLIST_FILENAME, 'r')
         # line: string
         line = inFile.readline()
         # wordlist: list of strings
         wordlist = str.split(line)
         print("  ", len(wordlist), "words loaded.")
         return random.choice(wordlist)
+
+    def iftxtFile(self):
+        if self.WORDLIST_FILENAME.endswith('.txt'):
+            return True
+        else:
+            exit()

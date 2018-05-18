@@ -1,8 +1,8 @@
 import random
 import string
+import os
 from classes.word import Word
 
-WORDLIST_FILENAME = "palavras.txt"
 
 def reloadIfGreater(guesses, diff):
     while(guesses < diff):
@@ -81,6 +81,10 @@ def hangman(secretWord):
 
         print('Available letters', available)
         letter = input('Please guess a letter: ')
+        
+        while letter.isalpha() == False:
+            letter = input('You can only type letters: ')
+
         if letter in lettersGuessed:
 
             guessed = letterInWord(secretWord, lettersGuessed)
@@ -110,5 +114,5 @@ def hangman(secretWord):
     quit()
 
 start_word = Word()
-start_word = start_word.loadWords().lower()
-hangman(start_word)
+start_word.iftxtFile()
+hangman(start_word.loadWords().lower())
