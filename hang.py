@@ -1,6 +1,7 @@
 import random
 import string
 import os
+import sys
 from classes.word import Word
 
 
@@ -80,8 +81,14 @@ def hangman(secretWord):
                 available = available.replace(letter, '')
 
         print('Available letters', available)
-        letter = input('Please guess a letter: ')
         
+        try:
+            letter = input('Please guess a letter: ')
+
+        except KeyboardInterrupt:
+            print('You cancelled the operation.')
+            sys.exit()
+
         while letter.isalpha() == False:
             letter = input('You can only type letters: ')
 
