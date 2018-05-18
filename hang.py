@@ -16,7 +16,14 @@ def initialPresentation(secretWord):
     response = ''
     print('Welcome to the game, Hangam!')
     print('I am thinking of a word that is', len(secretWord), ' letters long.')
-    response = input('Would you like to know how many different letters the word has? (y/n) ')
+
+    try:
+        response = input('Would you like to know how many different letters the word has? (y/n) ')
+
+    except KeyboardInterrupt:
+        print('\nYou cancelled the operation.')
+        sys.exit()
+
     while (response != 'y') and (response != 'n'):
         response = input('Would you like to know how many different letters the word has? (y/n) ')
     if(response == 'y'):
@@ -67,7 +74,12 @@ def differentLetters(secretWord):
 
 def hangman(secretWord):
 
-    guesses = 8
+    try:
+        guesses = 8
+    except NameError:
+        print('\nVariable guesses must be a number')
+        sys.exit()
+
     reloadIfGreater(guesses, differentLetters(secretWord))
     lettersGuessed = []
     initialPresentation(secretWord)
@@ -81,12 +93,12 @@ def hangman(secretWord):
                 available = available.replace(letter, '')
 
         print('Available letters', available)
-        
+
         try:
             letter = input('Please guess a letter: ')
 
         except KeyboardInterrupt:
-            print('You cancelled the operation.')
+            print('\nYou cancelled the operation.')
             sys.exit()
 
         while letter.isalpha() == False:
