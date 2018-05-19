@@ -7,10 +7,8 @@ from classes.word import Word
 
 def reloadIfGreater(guesses, diff):
     while(guesses < diff):
-        new_inFile = open(WORDLIST_FILENAME, 'r')
-        new_line = new_inFile.readline()
-        new_wordlist = str.split(new_line)
-        hangman(random.choice(new_wordlist))
+        new_wordlist = Word()
+        hangman(new_wordlist.loadWords().lower())
 
 def initialPresentation(secretWord):
     response = ''

@@ -7,7 +7,7 @@ class Word:
         self.inFile = ''
         self.line = ''
         self.wordlist = ''
-        self.WORDLIST_FILENAME = "palavras.txt"
+        self.WORDLIST_FILENAME = "txts/palavras.txt"
 
     def loadWords(self):
         """
