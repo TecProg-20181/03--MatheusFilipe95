@@ -6,8 +6,8 @@ from classes.word import Word
 
 
 def reloadIfGreater(guesses, diff):
+    new_wordlist = Word()
     while(guesses < diff):
-        new_wordlist = Word()
         hangman(new_wordlist.loadWords().lower())
 
 def initialPresentation(secretWord):
